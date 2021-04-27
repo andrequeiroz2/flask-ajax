@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block main %}
+
+<div class="column is-mobile">
+    <div class="column is-half is-offset-one-quarter">
+
+        <nav class="panel">
+            <p class="panel-heading">
+                {{ title }}
+            </p>
+            <form method="POST" action="">
+
+                <div class="panel-block">
+                    <div class="table-container column is-12">
+                        <table class="table is-striped is-fullwidth">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Number</th>
+                                    <th>CCV</th>
+                                </tr>
+                            </thead>
+                            {% for obj in cards %}
+                            <tbody>
+                                <tr>
+                                    <td>{{ obj.id }}</td>
+                                    <td>{{ obj.number }}</td>
+                                    <td>{{ obj.ccv }}</td>
+                                    <td>
+                                        <p class="center">
+                                            <input type="submit" class="button is-small is-black" id="{{obj.id}}" value="Consult">
+                                        </p>
+                                    </td>      
+                                </tr>
+                            </tbody>
+
+                            <script>
+                                $("#{{obj.id}}").click(function (ev) {
+                                  ev.preventDefault();
+                                  param = { "id": this.id};
+                                  deviceClickPub(param);
+                                });
+                            
+                                function deviceClickPub(param) {
+                                    $.ajax({
+                                        method: "POST",
+                                        url: "/consult",
+                                        contentType: 'application/json;charset=UTF-8',
+                                        data: JSON.stringify(param),
+                                        dataType: "json",
+                                        success: function (data) {
+                                            let _number_data = data['number'];
+                                            let _ccv_data = data['ccv'];
+                                            var _situation_data = data['situation'];
+                                        
+                                            status(_situation_data)
+                                        }
+                                    });
+                                }
+
+                                function status(_situation_data){
+                                    var _url = "{{ url_for('static', filename='js/jquery_consult.js') }}";
+                                        params = {
+                                            'title':'Card Status',
+                                            'situation': _situation_data,
+                                        };
+                                        console.log(params)
+
+                                        $.getScript(_url, function (params) {
+
+                                        });
+                                } 
+                            </script>
+                            
+
+
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>
+            </form>
+        </nav>
+    </div>
+</div>
+
+
+{% endblock main %}

@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block main %}
+
+<style>
+    .button {
+        width: 80px;
+    }
+</style>
+
+<form method=post>
+    <div class="container">
+        <div class="columns is-centered is-vcentered is-mobile">
+
+            <section class="section">
+                <form method="POST" action="">
+                    {{ form.hidden_tag() }}
+                    <nav class="panel">
+                        <p class="panel-heading">
+                            {{title}}
+                        </p>
+
+                        <section class="section">
+
+                            <div class="field">
+                                {{ form.number.label }}
+                                {% if form.number.errors %}
+                                {{ form.number(class="input is-info is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.number.errors %}
+                                    <p class="help is-danger">
+                                        <span>{{ error }}</span>
+                                    </p>
+                                    {% endfor %}
+                                </div>
+                                {% else %}
+                                {{ form.number(class="input is-info", type="text") }}
+                                {% endif %}
+                            </div>
+
+                            <div class="field">
+                                {{ form.ccv.label }}
+                                {% if form.ccv.errors %}
+                                {{ form.ccv(class="input is-info is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.ccv.errors %}
+                                    <p class="help is-danger">
+                                        <span>{{ error }}</span>
+                                    </p>
+                                    {% endfor %}
+                                </div>
+                                {% else %}
+                                {{ form.ccv(class="input is-info", type="text") }}
+                                {% endif %}
+                            </div>
+
+                            <div class="field">
+                                {{ form.situation.label }}
+                                {% if form.situation.errors %}
+                                {{ form.situation(class="input is-info is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.situation.errors %}
+                                    <p class="help is-danger">
+                                        <span>{{ error }}</span>
+                                    </p>
+                                    {% endfor %}
+                                </div>
+                                {% else %}
+                                {{ form.situation(class="input is-info", type="text") }}
+                                {% endif %}
+                            </div>
+
+
+                            <div class="field">
+                                <p class="control">
+                                    {{ form.submit(class="button is-primary") }}
+                                </p>
+                            </div>
+
+                        </section>
+                    </nav>
+                </form>
+            </section>
+        </div>
+    </div>
+</form>
+{% endblock main %}
+                            
