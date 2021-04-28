@@ -13,3 +13,4 @@ def list_all_card():
 def list_card_id(id):
     card = Card.query.filter_by(id=id).first()
     return card
+

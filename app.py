@@ -4,7 +4,7 @@ from cartoes import database
 from cartoes import init_app
 from cartoes.database import db
 
-def create_aap():
+def create_app():
     app = Flask(__name__)
 
     app.config['SECRET_KEY'] = 'api-cartoes::andrequeiroz2/api-cartoes:latest'

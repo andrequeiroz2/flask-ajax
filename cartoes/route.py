@@ -1,7 +1,18 @@
-from inspect import signature
-from flask import Blueprint, request, flash, redirect, url_for, render_template, jsonify
+from flask import(
+    Blueprint, 
+    request, 
+    flash, 
+    redirect, 
+    url_for, 
+    render_template, 
+    jsonify
+)
 from cartoes.form import CardForm
-from cartoes.controller import create_card, list_all_card, list_card_id
+from cartoes.controller import(
+    create_card, 
+    list_all_card, 
+    list_card_id, 
+)
 
 
 bp = Blueprint('card', __name__)
@@ -9,7 +20,7 @@ bp = Blueprint('card', __name__)
 
 @bp.route("/", methods=['GET', 'POST'])
 def index():
-    return render_template("index.html")
+    return render_template("index.html", title="Card")
 
 
 @bp.route("/card/register", methods=['GET', 'POST'])
@@ -39,14 +50,10 @@ def list_card():
     return render_template("list_card.html", title='Card List', cards=cards)
 
 
-
-
 @bp.route("/consult", methods=['POST'])
 def consult_card():
     _json = request.json
     _id = _json["id"]
-    
-    print(_json)
     
     card = list_card_id(_id)
     number = card.number
@@ -56,4 +63,5 @@ def consult_card():
     return  jsonify(number=number, ccv=ccv, situation=situation)
     
 
-    
+
+

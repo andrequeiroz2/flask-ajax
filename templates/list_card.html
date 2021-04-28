@@ -19,6 +19,7 @@
                                     <th>ID</th>
                                     <th>Number</th>
                                     <th>CCV</th>
+                                    <th>Administration</th>
                                 </tr>
                             </thead>
                             {% for obj in cards %}
@@ -30,6 +31,7 @@
                                     <td>
                                         <p class="center">
                                             <input type="submit" class="button is-small is-black" id="{{obj.id}}" value="Consult">
+                                        </a>
                                         </p>
                                     </td>      
                                 </tr>
@@ -39,10 +41,10 @@
                                 $("#{{obj.id}}").click(function (ev) {
                                   ev.preventDefault();
                                   param = { "id": this.id};
-                                  deviceClickPub(param);
+                                  card_status(param);
                                 });
                             
-                                function deviceClickPub(param) {
+                                function card_status(param) {
                                     $.ajax({
                                         method: "POST",
                                         url: "/consult",
@@ -52,8 +54,12 @@
                                         success: function (data) {
                                             let _number_data = data['number'];
                                             let _ccv_data = data['ccv'];
-                                            var _situation_data = data['situation'];
-                                        
+                                            let _situation_data = data['situation'];
+                                            
+                                            console.log(_number_data);
+                                            console.log(_ccv_data);
+                                            console.log(_situation_data);
+
                                             status(_situation_data)
                                         }
                                     });
@@ -65,15 +71,12 @@
                                             'title':'Card Status',
                                             'situation': _situation_data,
                                         };
-                                        console.log(params)
-
+                                        
                                         $.getScript(_url, function (params) {
 
                                         });
-                                } 
+                                }
                             </script>
-                            
-
 
                             {% endfor %}
                         </table>

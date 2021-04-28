@@ -2,42 +2,41 @@
 
 {% block main %}
 <div class="column is-mobile">
-    <div class="column is-half is-offset-one-quarter">
-        <h1 class="title">
-            App Card
-          </h1>
-          <h2 class="subtitle">
-            Easy Jquery Ajax.
-          </h2>
-          <h2 class="subtitle">
-            <p>This App uses Ajax and Jquery-Confirm</p> 
-          </h2>
-          <br>
+  <div class="column is-half is-offset-one-quarter">
+    
+    <section class="section is-medium">
+      <h1 class="title">App Card</h1>
+      <h2 class="subtitle">
+        Easy Jquery Ajax.
+      </h2>
 
+      <h2 class="subtitle">
+        This App uses Ajax and Jquery-Confirm
+      </h2>
 
-        <form method="POST" action="">
-            <nav class="panel">
-                <p class="panel-heading">
-                    {{ title }}
-                </p>
-                <section class="section">
-
-
-        <p>
-            <a href="{{ url_for('card.register_card') }}" type="submit"
-                class="button is-medium is-fullwidth is-primary">Register Card</a>
-        </p>
-        <br>
-        
-        <p>
-            <a href="{{ url_for('card.list_card') }}" type="submit"
-                class="button is-medium is-fullwidth is-primary">List Card</a>
-        </p>
-        <br>
-       
     </section>
-  </nav>
-        </form>
+  
+
+    <form method="POST" action="">
+      <nav class="panel">
+        <p class="panel-heading">
+            {{ title }}
+        </p>
+        <section class="section">
+          <p>
+            <a href="{{ url_for('card.register_card') }}" type="submit"
+            class="button is-medium is-fullwidth is-primary">Register Card</a>
+          </p>
+          <br>
+        
+          <p>
+            <a href="{{ url_for('card.list_card') }}" type="submit"
+            class="button is-medium is-fullwidth is-primary">List Card</a>
+          </p>
+          <br>
+        </section>
+      </nav>
+    </form>
   </div>
 </div>
 {% endblock main %}
