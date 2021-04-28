@@ -4,6 +4,7 @@ from cartoes import database
 from cartoes import init_app
 from cartoes.database import db
 
+
 def create_app():
     app = Flask(__name__)
 
@@ -15,9 +16,8 @@ def create_app():
     database.init_app(app)
 
     init_app(app)
-    
+
     with app.app_context():
         db.create_all()
 
     return app
-
